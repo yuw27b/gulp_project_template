@@ -1,0 +1,45 @@
+//vars
+
+$img-path: "../images/";
+
+//extend
+%clearfix {
+  &:before,
+  &:after {
+      content: '';
+      display: table;
+      overflow: hidden;
+  }
+  &:after {
+      clear: both;
+  }
+}
+
+//style
+* {
+	margin: 0;
+	padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	line-height: 1;
+}
+
+a {
+	border: none;
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+	border: none;
+	cursor: pointer;
+}
+
+img {
+	border: none;
+}
+
+button:hover {
+	cursor: pointer;
+}
