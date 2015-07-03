@@ -15,6 +15,7 @@ var gulp = require('gulp'),
 
 var libs = {
   css: [
+    'node_modeuls/normalize.css/normalize.css',
     'node_modules/font-awesome/css/font-awesome.min.css'
   ],
   js: [
