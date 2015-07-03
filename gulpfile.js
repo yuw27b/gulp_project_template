@@ -4,6 +4,7 @@ var gulp = require('gulp'),
   runSequence = require('run-sequence'),
   gulp_concat = require('gulp-concat'),
   gulp_uglify = require('gulp-uglify'),
+  babel = require("gulp-babel"),
   sass = require('gulp-ruby-sass'),
   autoprefixer = require('gulp-autoprefixer'),
   minifyCss = require('gulp-minify-css'),
@@ -57,6 +58,10 @@ gulp.task('css', function () {
 gulp.task('js', function () {
   return gulp.src(['htdocs/scripts/*.js'])
     .pipe(gulp_concat('app.js'))
+    .pipe(babel({
+      sourceMap: false,
+      modules: "common"
+    }))
     .pipe(gulp_uglify())
     .pipe(gulp.dest('public/assets/js/'));
 });

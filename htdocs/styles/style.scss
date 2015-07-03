@@ -1,19 +1,6 @@
-//vars
 
-$img-path: "../images/";
-
-//extend
-%clearfix {
-  &:before,
-  &:after {
-      content: '';
-      display: table;
-      overflow: hidden;
-  }
-  &:after {
-      clear: both;
-  }
-}
+@import 'vars';
+@import 'extends';
 
 //style
 * {

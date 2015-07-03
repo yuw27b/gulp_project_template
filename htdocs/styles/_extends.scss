@@ -1,0 +1,12 @@
+//extend
+%clearfix {
+  &:before,
+  &:after {
+      content: '';
+      display: table;
+      overflow: hidden;
+  }
+  &:after {
+      clear: both;
+  }
+}
