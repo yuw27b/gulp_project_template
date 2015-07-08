@@ -19,7 +19,9 @@ var libs = {
     'node_modules/font-awesome/css/font-awesome.min.css'
   ],
   js: [
-    'node_modules/snapsvg/dist/snap.svg-min.js'
+    'node_modules/axios/dist/axios.min.js',
+    'node_modules/snapsvg/dist/snap.svg-min.js',
+    'node_modules/gulp-babel/node_modules/babel-core/browser-polyfill.min.js'
   ]
 };
 
