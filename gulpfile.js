@@ -13,6 +13,12 @@ var gulp = require('gulp'),
   fileinclude = require('gulp-file-include'),
   browserSync = require('browser-sync');
 
+var bs = browserSync.create("_server");
+bs.init({
+    port: 3000,
+    baseDir: 'public'
+});
+
 var libs = {
   css: [
     'node_modeuls/normalize.css/normalize.css',
@@ -87,21 +93,12 @@ gulp.task('fileinclude', function() {
     .pipe(gulp.dest('public/'));
 });
 
-
-gulp.task('server', function () {
-  browserSync({
-    server: {
-      baseDir: 'public'
-    }
-  });
-});
-
 /* execute */
-gulp.task('default', ['setup-lib', 'css', 'js', 'img-min', 'fileinclude', 'watch', 'server'], function (){});
+gulp.task('default', ['setup-lib', 'css', 'js', 'img-min', 'fileinclude', 'watch'], function (){});
 
 gulp.task('watch', function() {
-  gulp.watch(['htdocs/styles/*.scss'], ['css']);
-  gulp.watch(['htdocs/scripts/*.js', 'htdocs/scripts/*/*.js'], ['js']);
-  gulp.watch(['htdocs/images/*'], ['img-min']);
-  gulp.watch(['htdocs/*.html', 'htdocs/*/*.html'], ['fileinclude']);
+  gulp.watch(['htdocs/styles/*.scss'], ['css', bs.reload]);
+  gulp.watch(['htdocs/scripts/*.js', 'htdocs/scripts/*/*.js'], ['js', bs.reload]);
+  gulp.watch(['htdocs/images/*'], ['img-min', bs.reload]);
+  gulp.watch(['htdocs/*.html', 'htdocs/*/*.html'], ['fileinclude', bs.reload]);
 });
