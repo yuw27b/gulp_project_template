@@ -85,7 +85,7 @@ gulp.task('img-min', function () {
 });
 
 gulp.task('fileinclude', function() {
-  gulp.src(['htdocs/*.html', 'htdocs/*/*.html', '-htdocs/includes/*.html'], { base: 'htdocs' })
+  gulp.src(['htdocs/*.html'], { base: 'htdocs' })
     .pipe(fileinclude({
       prefix: '@@',
       basepath: 'htdocs/includes/'
