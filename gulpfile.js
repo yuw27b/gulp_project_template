@@ -7,8 +7,6 @@ var gulp = require('gulp'),
   sass = require('gulp-ruby-sass'),
   autoprefixer = require('gulp-autoprefixer'),
   minifyCss = require('gulp-minify-css'),
-  imagemin = require('gulp-imagemin'),
-  pngquant = require('imagemin-pngquant'),
   fileinclude = require('gulp-file-include'),
   browserSync = require('browser-sync');
 
@@ -16,9 +14,7 @@ var libs = {
   css: [
     'node_modules/font-awesome/css/font-awesome.min.css'
   ],
-  js: [
-    'node_modules/snapsvg/dist/snap.svg-min.js'
-  ]
+  js: []
 };
 
 gulp.task('js-lib', function () {
@@ -59,15 +55,6 @@ gulp.task('js', function () {
     .pipe(gulp_concat('app.js'))
     .pipe(gulp_uglify())
     .pipe(gulp.dest('public/assets/js/'));
-});
-
-gulp.task('img-min', function () {
-  return gulp.src('htdocs/images/*')
-    .pipe(imagemin({
-      svgoPlugins: [{removeViewBox: false}],
-      use: [pngquant()]
-    }))
-    .pipe(gulp.dest('./public/images/'));
 });
 
 gulp.task('fileinclude', function() {
