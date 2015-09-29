@@ -8,8 +8,6 @@ var gulp = require('gulp'),
   sass = require('gulp-ruby-sass'),
   autoprefixer = require('gulp-autoprefixer'),
   minifyCss = require('gulp-minify-css'),
-  imagemin = require('gulp-imagemin'),
-  pngquant = require('imagemin-pngquant'),
   fileinclude = require('gulp-file-include'),
   browserSync = require('browser-sync');
 
@@ -75,15 +73,6 @@ gulp.task('js', function () {
     .pipe(gulp.dest('public/assets/js/'));
 });
 
-gulp.task('img-min', function () {
-  return gulp.src('htdocs/images/*')
-    .pipe(imagemin({
-      svgoPlugins: [{removeViewBox: false}],
-      use: [pngquant()]
-    }))
-    .pipe(gulp.dest('./public/images/'));
-});
-
 gulp.task('fileinclude', function() {
   gulp.src(['htdocs/*.html'], { base: 'htdocs' })
     .pipe(fileinclude({
@@ -94,11 +83,10 @@ gulp.task('fileinclude', function() {
 });
 
 /* execute */
-gulp.task('default', ['setup-lib', 'css', 'js', 'img-min', 'fileinclude', 'watch'], function (){});
+gulp.task('default', ['setup-lib', 'css', 'js', 'fileinclude', 'watch'], function (){});
 
 gulp.task('watch', function() {
   gulp.watch(['htdocs/styles/*.scss'], ['css', bs.reload]);
   gulp.watch(['htdocs/scripts/*.js', 'htdocs/scripts/*/*.js'], ['js', bs.reload]);
-  gulp.watch(['htdocs/images/*'], ['img-min', bs.reload]);
   gulp.watch(['htdocs/*.html', 'htdocs/*/*.html'], ['fileinclude', bs.reload]);
 });
